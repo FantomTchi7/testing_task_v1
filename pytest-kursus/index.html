@@ -61,6 +61,61 @@
       <h2>A. Funktsionaalsed alustõed (a_basics.py)</h2>
       <p>Üldine juhend: vaata funktsioone ja kirjuta teste, et kontrollida nende õigsust. 
       Mõned funktsioonid võivad olla vigased - sinu testid peaksid need leidma!</p>
+      
+      <h3>Proovi funktsioone siin:</h3>
+      <div class="interactive-demo">
+        <div class="function-test">
+          <h4>abs_val(-5)</h4>
+          <button onclick="testAbsVal()">Testi</button>
+          <div id="abs-val-result" class="result"></div>
+        </div>
+        <div class="function-test">
+          <h4>max3(10, 20, 5)</h4>
+          <button onclick="testMax3()">Testi</button>
+          <div id="max3-result" class="result"></div>
+        </div>
+        <div class="function-test">
+          <h4>repeat("tere", 3)</h4>
+          <button onclick="testRepeat()">Testi</button>
+          <div id="repeat-result" class="result"></div>
+        </div>
+        <div class="function-test">
+          <h4>first_last("JavaScript")</h4>
+          <button onclick="testFirstLast()">Testi</button>
+          <div id="first-last-result" class="result"></div>
+        </div>
+         <div class="function-test">
+          <h4>is_even(4)</h4>
+          <button onclick="testIsEven()">Testi</button>
+          <div id="is-even-result" class="result"></div>
+        </div>
+        <div class="function-test">
+          <h4>factorial(5)</h4>
+          <button onclick="testFactorial()">Testi</button>
+          <div id="factorial-result" class="result"></div>
+        </div>
+        <div class="function-test">
+          <h4>reverse_string("Hello")</h4>
+          <button onclick="testReverseString()">Testi</button>
+          <div id="reverse-string-result" class="result"></div>
+        </div>
+        <div class="function-test">
+          <h4>is_palindrome("A man a plan a canal Panama")</h4>
+          <button onclick="testIsPalindrome()">Testi</button>
+          <div id="is-palindrome-result" class="result"></div>
+        </div>
+        <div class="function-test">
+          <h4>clamp(15, 0, 10)</h4>
+          <button onclick="testClamp()">Testi</button>
+          <div id="clamp-result" class="result"></div>
+        </div>
+        <div class="function-test">
+          <h4>sum_list([1, 2, 3, 4])</h4>
+          <button onclick="testSumList()">Testi</button>
+          <div id="sum-list-result" class="result"></div>
+        </div>
+      </div>
+      
       <h3>Näide testist</h3>
       <pre><code># Näide (liitmise test)
 def test_add_basic():
@@ -82,17 +137,30 @@ def test_add_basic():
           <button onclick="testUniqueSorted()">Testi</button>
           <div id="unique-sorted-result" class="result"></div>
         </div>
-        
         <div class="function-test">
           <h4>count_words("Tere tere TERE")</h4>
           <button onclick="testCountWords()">Testi</button>
           <div id="count-words-result" class="result"></div>
         </div>
-        
         <div class="function-test">
           <h4>merge_dicts({"a":1, "b":2}, {"b":9, "c":3})</h4>
           <button onclick="testMergeDicts()">Testi</button>
           <div id="merge-dicts-result" class="result"></div>
+        </div>
+        <div class="function-test">
+          <h4>sum_unique([1, 2, 2, 3, 3, 3])</h4>
+          <button onclick="testSumUnique()">Testi</button>
+          <div id="sum-unique-result" class="result"></div>
+        </div>
+        <div class="function-test">
+          <h4>dict_invert({"a": "x", "b": "y"})</h4>
+          <button onclick="testDictInvert()">Testi</button>
+          <div id="dict-invert-result" class="result"></div>
+        </div>
+        <div class="function-test">
+          <h4>frequencies(["a", "b", "a", "c", "a"])</h4>
+          <button onclick="testFrequencies()">Testi</button>
+          <div id="frequencies-result" class="result"></div>
         </div>
       </div>
       
@@ -117,19 +185,16 @@ def test_unique_sorted_basic():
           <button onclick="testFibonacci()">Testi</button>
           <div id="fibonacci-result" class="result"></div>
         </div>
-        
         <div class="function-test">
           <h4>prime_factors(12)</h4>
           <button onclick="testPrimeFactors()">Testi</button>
           <div id="prime-factors-result" class="result"></div>
         </div>
-        
         <div class="function-test">
           <h4>moving_average([1,2,3,4], 2)</h4>
           <button onclick="testMovingAverage()">Testi</button>
           <div id="moving-average-result" class="result"></div>
         </div>
-        
         <div class="function-test">
           <h4>BankAccount konto test</h4>
           <button onclick="testBankAccount()">Testi</button>
@@ -154,8 +219,69 @@ def test_account_withdraw_overdraft():
   </main>
 
   <script>
-    // B-OSA FUNKTSIOONID (mõned vigased)
+    // ÜLDINE TESTIUTILITI
+    const PASS = 'PASS';
+    const FAIL = 'FAIL';
+
+    function showResult(elementId, isPass, message) {
+      const element = document.getElementById(elementId);
+      element.className = `result ${isPass ? 'pass' : 'fail'}`;
+      element.textContent = message;
+    }
     
+    // A-OSA FUNKTSIOONID
+    function abs_val(x) {
+      return Math.abs(x);
+    }
+
+    function max3(a, b, c) {
+      return Math.max(a, b, c);
+    }
+
+    function repeat(s, n) {
+      if (n < 0) return "";
+      return s.repeat(n);
+    }
+
+    function first_last(s) {
+      if (s.length === 0) {
+        return { first: null, last: null };
+      }
+      return { first: s[0], last: s[s.length - 1] };
+    }
+    
+    function is_even(n) {
+        return n % 2 === 0;
+    }
+
+    function factorial(n) {
+        if (n < 0) throw new Error("Negatiivne arv ei ole lubatud");
+        if (n === 0) return 1;
+        let result = 1;
+        for (let i = 2; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+    
+    function reverse_string(s) {
+        return s.split('').reverse().join('');
+    }
+
+    function is_palindrome(s) {
+        const cleaned = s.toLowerCase().replace(/[\W_]/g, '');
+        return cleaned === reverse_string(cleaned);
+    }
+
+    function clamp(value, min, max) {
+        return Math.max(min, Math.min(value, max));
+    }
+    
+    function sum_list(nums) {
+        return nums.reduce((sum, current) => sum + current, 0);
+    }
+    
+    // B-OSA FUNKTSIOONID
     function unique_sorted(nums) {
       return nums.filter((value, index, self) => self.indexOf(value) === index).sort((a, b) => a - b);
     }
@@ -174,14 +300,37 @@ def test_account_withdraw_overdraft():
     function merge_dicts(d1, d2) {
       return { ...d1, ...d2 };
     }
+
+    function sum_unique(nums) {
+        const unique = [...new Set(nums)];
+        return unique.reduce((sum, current) => sum + current, 0);
+    }
+
+    function dict_invert(d) {
+        const inverted = {};
+        for (const key in d) {
+            inverted[d[key]] = key;
+        }
+        return inverted;
+    }
     
-    // C-OSA FUNKTSIOONID (mõned vigased)
+    function frequencies(items) {
+        const freq = {};
+        for (const item of items) {
+            freq[item] = (freq[item] || 0) + 1;
+        }
+        return freq;
+    }
     
+    // C-OSA FUNKTSIOONID
     function fibonacci(n) {
       if (n < 0) throw new Error("Negatiivse arvu Fibonacci ei ole defineeritud");
       if (n === 0) return 0;
-      if (n === 1) return 1;
-      return fibonacci(n - 1) + fibonacci(n - 2);
+      let a = 0, b = 1;
+      for (let i = 2; i <= n; i++) {
+        [a, b] = [b, a + b];
+      }
+      return b;
     }
     
     function prime_factors(n) {
@@ -212,24 +361,118 @@ def test_account_withdraw_overdraft():
       return result;
     }
     
-    // TESTID
+    // TESTIFUNKTSIOONID
     
-    function showResult(elementId, isPass, message) {
-      const element = document.getElementById(elementId);
-      element.className = `result ${isPass ? 'pass' : 'fail'}`;
-      element.textContent = message;
+    // A-OSA TESTID
+    function testAbsVal() {
+      try {
+        const result = abs_val(-5);
+        const expected = 5;
+        const moreOk = abs_val(5) === 5 && abs_val(0) === 0;
+        const isCorrect = (result === expected) && moreOk;
+        showResult('abs-val-result', isCorrect, `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? PASS : FAIL}`);
+      } catch (error) { showResult('abs-val-result', false, `VIGA: ${error.message}`); }
     }
     
+    function testMax3() {
+      try {
+        const result = max3(10, 20, 5);
+        const expected = 20;
+        const moreOk = max3(-1, -5, 0) === 0 && max3(5, 5, 5) === 5;
+        const isCorrect = (result === expected) && moreOk;
+        showResult('max3-result', isCorrect, `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? PASS : FAIL}`);
+      } catch (error) { showResult('max3-result', false, `VIGA: ${error.message}`); }
+    }
+
+    function testRepeat() {
+      try {
+        const result = repeat("tere", 3);
+        const expected = "tereteretere";
+        const moreOk = repeat("a", 1) === "a" && repeat("a", 0) === "";
+        const isCorrect = (result === expected) && moreOk;
+        showResult('repeat-result', isCorrect, `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? PASS : FAIL}`);
+      } catch (error) { showResult('repeat-result', false, `VIGA: ${error.message}`); }
+    }
+    
+    function testFirstLast() {
+      try {
+        const result = first_last("JavaScript");
+        const expected = { first: "J", last: "t" };
+        const moreOk = JSON.stringify(first_last("a")) === JSON.stringify({ first: "a", last: "a" }) && JSON.stringify(first_last("")) === JSON.stringify({ first: null, last: null });
+        const isCorrect = JSON.stringify(result) === JSON.stringify(expected) && moreOk;
+        showResult('first-last-result', isCorrect, `Tulemus: ${JSON.stringify(result)} | Oodatud: ${JSON.stringify(expected)} | ${isCorrect ? PASS : FAIL}`);
+      } catch (error) { showResult('first-last-result', false, `VIGA: ${error.message}`); }
+    }
+    
+    function testIsEven() {
+        try {
+            const result = is_even(4);
+            const expected = true;
+            const moreOk = is_even(5) === false && is_even(0) === true;
+            const isCorrect = (result === expected) && moreOk;
+            showResult('is-even-result', isCorrect, `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? PASS : FAIL}`);
+        } catch (error) { showResult('is-even-result', false, `VIGA: ${error.message}`); }
+    }
+
+    function testFactorial() {
+        try {
+            const result = factorial(5);
+            const expected = 120;
+            const moreOk = factorial(0) === 1;
+            const isCorrect = (result === expected) && moreOk;
+            showResult('factorial-result', isCorrect, `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? PASS : FAIL}`);
+        } catch (error) { showResult('factorial-result', false, `VIGA: ${error.message}`); }
+    }
+
+    function testReverseString() {
+        try {
+            const result = reverse_string("Hello");
+            const expected = "olleH";
+            const moreOk = reverse_string("") === "";
+            const isCorrect = (result === expected) && moreOk;
+            showResult('reverse-string-result', isCorrect, `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? PASS : FAIL}`);
+        } catch (error) { showResult('reverse-string-result', false, `VIGA: ${error.message}`); }
+    }
+
+    function testIsPalindrome() {
+        try {
+            const result = is_palindrome("A man a plan a canal Panama");
+            const expected = true;
+            const moreOk = is_palindrome("hello") === false;
+            const isCorrect = (result === expected) && moreOk;
+            showResult('is-palindrome-result', isCorrect, `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? PASS : FAIL}`);
+        } catch (error) { showResult('is-palindrome-result', false, `VIGA: ${error.message}`); }
+    }
+
+    function testClamp() {
+        try {
+            const result = clamp(15, 0, 10);
+            const expected = 10;
+            const moreOk = clamp(5, 0, 10) === 5 && clamp(-5, 0, 10) === 0;
+            const isCorrect = (result === expected) && moreOk;
+            showResult('clamp-result', isCorrect, `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? PASS : FAIL}`);
+        } catch (error) { showResult('clamp-result', false, `VIGA: ${error.message}`); }
+    }
+
+    function testSumList() {
+        try {
+            const result = sum_list([1, 2, 3, 4]);
+            const expected = 10;
+            const moreOk = sum_list([]) === 0 && sum_list([-1, 1]) === 0;
+            const isCorrect = (result === expected) && moreOk;
+            showResult('sum-list-result', isCorrect, `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? PASS : FAIL}`);
+        } catch (error) { showResult('sum-list-result', false, `VIGA: ${error.message}`); }
+    }
+    
+    // B-OSA TESTID
     function testUniqueSorted() {
       try {
         const result = unique_sorted([3,1,2,2,3]);
         const expected = [1,2,3];
         const isCorrect = JSON.stringify(result) === JSON.stringify(expected);
         showResult('unique-sorted-result', isCorrect, 
-          `Tulemus: [${result.join(',')}] | Oodatud: [${expected.join(',')}] | ${isCorrect ? 'PASS' : 'FAIL'}`);
-      } catch (error) {
-        showResult('unique-sorted-result', false, `VIGA: ${error.message}`);
-      }
+          `Tulemus: [${result.join(',')}] | Oodatud: [${expected.join(',')}] | ${isCorrect ? PASS : FAIL}`);
+      } catch (error) { showResult('unique-sorted-result', false, `VIGA: ${error.message}`); }
     }
     
     function testCountWords() {
@@ -238,10 +481,8 @@ def test_account_withdraw_overdraft():
         const expected = {"tere": 3};
         const isCorrect = JSON.stringify(result) === JSON.stringify(expected);
         showResult('count-words-result', isCorrect, 
-          `Tulemus: ${JSON.stringify(result)} | Oodatud: ${JSON.stringify(expected)} | ${isCorrect ? 'PASS' : 'FAIL'}`);
-      } catch (error) {
-        showResult('count-words-result', false, `VIGA: ${error.message}`);
-      }
+          `Tulemus: ${JSON.stringify(result)} | Oodatud: ${JSON.stringify(expected)} | ${isCorrect ? PASS : FAIL}`);
+      } catch (error) { showResult('count-words-result', false, `VIGA: ${error.message}`); }
     }
     
     function testMergeDicts() {
@@ -250,22 +491,46 @@ def test_account_withdraw_overdraft():
         const expected = {"a":1, "b":9, "c":3};
         const isCorrect = JSON.stringify(result) === JSON.stringify(expected);
         showResult('merge-dicts-result', isCorrect, 
-          `Tulemus: ${JSON.stringify(result)} | Oodatud: ${JSON.stringify(expected)} | ${isCorrect ? 'PASS' : 'FAIL'}`);
-      } catch (error) {
-        showResult('merge-dicts-result', false, `VIGA: ${error.message}`);
-      }
+          `Tulemus: ${JSON.stringify(result)} | Oodatud: ${JSON.stringify(expected)} | ${isCorrect ? PASS : FAIL}`);
+      } catch (error) { showResult('merge-dicts-result', false, `VIGA: ${error.message}`); }
+    }
+
+    function testSumUnique() {
+      try {
+        const result = sum_unique([1, 2, 2, 3, 3, 3]);
+        const expected = 6; // 1 + 2 + 3
+        const isCorrect = result === expected;
+        showResult('sum-unique-result', isCorrect, `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? PASS : FAIL}`);
+      } catch (error) { showResult('sum-unique-result', false, `VIGA: ${error.message}`); }
     }
     
+    function testDictInvert() {
+      try {
+        const result = dict_invert({"a": "x", "b": "y"});
+        const expected = {"x": "a", "y": "b"};
+        const isCorrect = JSON.stringify(result) === JSON.stringify(expected);
+        showResult('dict-invert-result', isCorrect, `Tulemus: ${JSON.stringify(result)} | Oodatud: ${JSON.stringify(expected)} | ${isCorrect ? PASS : FAIL}`);
+      } catch (error) { showResult('dict-invert-result', false, `VIGA: ${error.message}`); }
+    }
+    
+    function testFrequencies() {
+      try {
+        const result = frequencies(["a", "b", "a", "c", "a"]);
+        const expected = {"a": 3, "b": 1, "c": 1};
+        const isCorrect = JSON.stringify(result) === JSON.stringify(expected);
+        showResult('frequencies-result', isCorrect, `Tulemus: ${JSON.stringify(result)} | Oodatud: ${JSON.stringify(expected)} | ${isCorrect ? PASS : FAIL}`);
+      } catch (error) { showResult('frequencies-result', false, `VIGA: ${error.message}`); }
+    }
+    
+    // C-OSA TESTID
     function testFibonacci() {
       try {
         const result = fibonacci(10);
         const expected = 55;
         const isCorrect = result === expected;
         showResult('fibonacci-result', isCorrect, 
-          `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? 'PASS' : 'FAIL'}`);
-      } catch (error) {
-        showResult('fibonacci-result', false, `VIGA: ${error.message}`);
-      }
+          `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? PASS : FAIL}`);
+      } catch (error) { showResult('fibonacci-result', false, `VIGA: ${error.message}`); }
     }
     
     function testPrimeFactors() {
@@ -274,10 +539,8 @@ def test_account_withdraw_overdraft():
         const expected = [2,2,3];
         const isCorrect = JSON.stringify(result) === JSON.stringify(expected);
         showResult('prime-factors-result', isCorrect, 
-          `Tulemus: [${result.join(',')}] | Oodatud: [${expected.join(',')}] | ${isCorrect ? 'PASS' : 'FAIL'}`);
-      } catch (error) {
-        showResult('prime-factors-result', false, `VIGA: ${error.message}`);
-      }
+          `Tulemus: [${result.join(',')}] | Oodatud: [${expected.join(',')}] | ${isCorrect ? PASS : FAIL}`);
+      } catch (error) { showResult('prime-factors-result', false, `VIGA: ${error.message}`); }
     }
     
     function testMovingAverage() {
@@ -286,23 +549,18 @@ def test_account_withdraw_overdraft():
         const expected = [1.5, 2.5, 3.5];
         const isCorrect = JSON.stringify(result) === JSON.stringify(expected);
         showResult('moving-average-result', isCorrect, 
-          `Tulemus: [${result.join(',')}] | Oodatud: [${expected.join(',')}] | ${isCorrect ? 'PASS' : 'FAIL'}`);
-      } catch (error) {
-        showResult('moving-average-result', false, `VIGA: ${error.message}`);
-      }
+          `Tulemus: [${result.join(',')}] | Oodatud: [${expected.join(',')}] | ${isCorrect ? PASS : FAIL}`);
+      } catch (error) { showResult('moving-average-result', false, `VIGA: ${error.message}`); }
     }
     
     function testBankAccount() {
       try {
-        // Lihtne konto test
         const acc = { balance: 10 };
         const canWithdraw = acc.balance >= 11;
-        const isCorrect = !canWithdraw; // Ei tohi lubada üle võtta
+        const isCorrect = !canWithdraw;
         showResult('bank-account-result', isCorrect, 
-          `Saldo: ${acc.balance} | Üle võtmine 11: ${canWithdraw ? 'LUBATUD' : 'KEELATUD'} | ${isCorrect ? 'PASS' : 'FAIL'}`);
-      } catch (error) {
-        showResult('bank-account-result', false, `VIGA: ${error.message}`);
-      }
+          `Saldo: ${acc.balance} | Üle võtmine 11: ${canWithdraw ? 'LUBATUD' : 'KEELATUD'} | ${isCorrect ? PASS : FAIL}`);
+      } catch (error) { showResult('bank-account-result', false, `VIGA: ${error.message}`); }
     }
   </script>
 </body>
