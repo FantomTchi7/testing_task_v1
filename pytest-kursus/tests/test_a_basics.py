@@ -2,7 +2,7 @@ import math
 import pytest
 from src.a_basics import (
     add, sub, mul, div, sum_list, is_even, factorial, reverse_string,
-    is_palindrome, to_title_case, clamp, median, unique_letters, safe_int, nth_root
+    is_palindrome, to_title_case, clamp, median, unique_letters
 )
 
 # A-OSA TESTID: Kirjuta teste, et leida vigased funktsioonid!
@@ -85,6 +85,3 @@ def test_median_odd_even_and_empty_error():
 def test_unique_letters_basic():
     out = unique_letters("AaBb!! cc")
     assert out == {"a", "b", "c"}
-
-
-
