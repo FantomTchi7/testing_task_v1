@@ -27,4 +27,4 @@ jobs:
 
       - name: Run pytest
         run: |
-          PYTHONPATH=pytest-kursus pytest project/tests/ --maxfail=5 --disable-warnings -q
+          PYTHONPATH=project pytest project/tests/ --maxfail=5 --disable-warnings -q
