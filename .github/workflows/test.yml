@@ -23,15 +23,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        # It's good practice to install pip within your conda env
         conda install pip --yes
-        # Install testing dependencies
         conda install pytest --yes
 
     - name: Install project
       run: |
-        # This is the crucial step that fixes the ModuleNotFoundError
-        # The '-e' means "editable mode"
         pip install -e .
 
     - name: Run tests
