@@ -23,16 +23,8 @@ jobs:
 
     - name: Install dependencies into base environment
       run: |
-        # Using 'conda install' is often safer for the base environment
-        # than 'conda env update'.
         conda install --file environment.yml
 
-    - name: Test A basics
+    - name: Run tests
       run: |
-        pytest ./tests/test_a_basics.py
-    - name: Test B collections I/O
-      run: |
-        pytest ./tests/test_b_collections_io.py
-    - name: Test C module
-      run: |
-        pytest ./tests/test_c_module.py
+        pytest ./tests/
