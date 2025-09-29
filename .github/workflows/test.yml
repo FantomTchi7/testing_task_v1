@@ -26,10 +26,6 @@ jobs:
         conda install pip --yes
         conda install pytest --yes
 
-    - name: Install project
-      run: |
-        pip install -e .
-
     - name: Run tests
       run: |
-        pytest ./tests/
+        pytest
