@@ -10,20 +10,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python 3.13.5
-      uses: actions/setup-python@v3
+
+    - name: Set up Miniconda
+      uses: conda-incubator/setup-miniconda@v3
       with:
         python-version: '3.13.5'
-    - name: Add conda to system path
+        activate-environment: base
+        auto-update-conda: true
+
+    - name: Install dependencies into base environment
       run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        echo $CONDA/bin >> $GITHUB_PATH
-    - name: Install dependencies
-      run: |
-        conda env update --file environment.yml --name base
-    - name: Install pytest
-      run: |
-        conda install pytest
+        # Using 'conda install' is often safer for the base environment
+        # than 'conda env update'.
+        conda install --file environment.yml
+
     - name: Test A basics
       run: |
         pytest ./tests/test_a_basics.py
